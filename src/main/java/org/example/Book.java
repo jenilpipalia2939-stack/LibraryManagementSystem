@@ -13,6 +13,7 @@ public abstract class Book implements Lendable {
         this.author = author;
         this.isAvailable = true;
     }
+
     public abstract void displayBookDetails();
 
     @Override

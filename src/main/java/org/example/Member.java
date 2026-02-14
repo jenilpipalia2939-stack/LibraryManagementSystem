@@ -5,8 +5,8 @@ public class Member extends User {
     private int borrowedBooksCount;
     private final int MAX_BORROW_LIMIT = 5;
 
-    public Member(int borrowedBooksCount) {
-        super();
+    public Member(String name, String contactInfo, int borrowedBooksCount) {
+        super(name, contactInfo);
         this.borrowedBooksCount = borrowedBooksCount;
     }
 
@@ -19,5 +19,10 @@ public class Member extends User {
     @Override
     boolean canBorrowBooks() {
         return borrowedBooksCount < MAX_BORROW_LIMIT;
+    }
+
+    @Override
+    public void displayUserDetails() {
+        super.displayUserDetails();
     }
 }

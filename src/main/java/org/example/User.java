@@ -1,23 +1,22 @@
 package org.example;
 
+import javax.print.attribute.UnmodifiableSetException;
+
 public abstract class User {
     private String userId;
     private String name;
     private String contactInfo;
     private static int totalUsers = 0;
 
-//    public User(String name, String contactInfo) {
-//        this.name = name;
-//        this.contactInfo = contactInfo;
-//    }
+    public User(String name, String contactInfo) {
+        this.name = name;
+        this.contactInfo = contactInfo;
+        totalUsers++;
+        this.userId = generateUniqueId();
+    }
 
     public final String generateUniqueId() {
         return "USER" + totalUsers;
-    }
-
-    public User() {
-        totalUsers++;
-        this.userId = generateUniqueId();
     }
 
 //
@@ -52,5 +51,11 @@ public abstract class User {
 
     public String getUserId() {
         return userId;
+    }
+
+    public void displayUserDetails() {
+        System.out.println("User ID: " + getUserId());
+        System.out.println("Name: " + getName());
+        System.out.println("contact Info: " + getContactInfo());
     }
 }

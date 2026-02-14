@@ -6,8 +6,17 @@ public class Librarian extends User {
 
     private String employeeNumber;
 
-    public Librarian() {
-        super();
+    public Librarian(String name, String contactInfo) {
+        super(name, contactInfo);
+        this.employeeNumber = employeeNumber;
+    }
+
+    public String getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    public String generateEmployeeNumber() {
+        return "Employee" + Math.random();
     }
 
     @Override
@@ -21,6 +30,14 @@ public class Librarian extends User {
         return true;
     }
 
-    void addNewBook(Book book) {};
-    void removeBook(Book book) {};
+    @Override
+    public void displayUserDetails() {
+        super.displayUserDetails();
+    }
+
+    void addNewBook(Book book) {
+    }
+
+    void removeBook(Book book) {
+    }
 }
