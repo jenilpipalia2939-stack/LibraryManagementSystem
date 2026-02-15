@@ -1,5 +1,6 @@
 package org.example;
 
+import static org.example.LibraryManagementSystem.searchBook;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -24,7 +25,7 @@ public class Main {
         library1.registerUser(l1);
         library1.registerUser(s2);
 
-        library1.addBook(new PrintedBook("145635", "Moree Mooro", "Devayat Khavad"));
+        library1.addBook(new PrintedBook("145635", "Morae Mooro", "Devayat Khavad"));
         library1.addBook(new PrintedBook("111001", "Rich Dad Poor Dad", "Robert Kiyosaki"));
         library1.addBook(new PrintedBook("111002", "Atomic Habits", "James Clear"));
 
@@ -65,5 +66,7 @@ public class Main {
         for (User u : library1.getRegisteredUsers()) {
             u.displayUserDetails();
         }
+
+        System.out.println(searchBook("Rich Dad Poor Dad", "Robert Kiyosaki", "NovelBook"));
     }
 }

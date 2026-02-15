@@ -1,17 +1,24 @@
 package org.example;
 
 public abstract class Book implements Lendable {
-    private final String isbn;
-    private final String title;
-    private final String author;
+    private String isbn;
+    private String title;
+    private String author;
     private boolean isAvailable;
 
     public Book(String isbn, String title, String author) {
-        super();
         this.isbn = isbn;
         this.title = title;
         this.author = author;
+    }
+    public Book() {
         this.isAvailable = true;
+    }
+
+    public Book(Book book) {
+        this.isbn = book.getIsbn();
+        this.title = book.getTitle();
+        this.author = book.getAuthor();
     }
 
     public abstract void displayBookDetails();
