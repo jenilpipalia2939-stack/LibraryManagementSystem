@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibraryManagementSystem {
+public class LibraryManagementSystem implements Lendable {
     static List<Book> bookInventory = new ArrayList<>();
     static List<User> registeredUsers = new ArrayList<>();
     static List<Book> searchedResultBook = new ArrayList<>();
@@ -26,7 +26,10 @@ public class LibraryManagementSystem {
 
     public static List<Book> searchBook(String title, String author) {
         for (Book book : bookInventory) {
-            if (book.getTitle().equals(title) || book.getAuthor().equals(author)) {
+            boolean matchesTitle = book.getTitle().equalsIgnoreCase(title);
+            boolean matchesAuthor = book.getAuthor().equalsIgnoreCase(author);
+
+            if (matchesTitle || matchesAuthor) {
                 searchedResultBook.add(book);
             }
         }
@@ -35,10 +38,45 @@ public class LibraryManagementSystem {
 
     public static List<Book> searchBook(String title, String author, String type) {
         for (Book book : bookInventory) {
-            if (book.getTitle().equals(title) || book.getAuthor().equals(author) || BookType.NovelBook.equals(type) || BookType.TextBook.equals(type)) {
+            boolean matchesTitle = book.getTitle().equalsIgnoreCase(title);
+            boolean matchesAuthor = book.getAuthor().equalsIgnoreCase(author);
+//            boolean matchesType =
+//                    (type.equals("NovelBook") && book instanceof NovelBook) ||
+//                            (type.equals("TextBook") && book instanceof TextBook);
+//            Reason for above code commented due to type equal checking condition, Because you are calling method on null object.
+//-----------------------------------------------------------------------------------------------------------------------------------------------
+            boolean matchesType = ("NovelBook".equals(type) && book instanceof NovelBook) || ("TextBook".equals(type) && book instanceof TextBook);
+
+            if (matchesTitle || matchesAuthor || matchesType) {
                 searchedResultBook.add(book);
             }
         }
         return searchedResultBook;
+    }
+
+    @Override
+    public boolean lend(User user) {
+
+        if (!isAvailable()) {
+            System.out.println("Book already lent");
+            return false;
+        }
+
+        if (!user.canBorrowBooks()) {
+            System.out.println("User exceeded borrowing limit");
+            return false;
+        }
+
+        System.out.println("Book Lent Successfully");
+        isAvailable = false;
+        return true;
+    }
+
+    @Override
+    public void returnBook(User user) {}
+
+    @Override
+    public boolean isAvailable() {
+        return false;
     }
 }

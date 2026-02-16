@@ -2,8 +2,8 @@ package org.example;
 
 public class PrintedBook extends Book {
 
-    public PrintedBook(String isbn, String title, String author) {
-        super(isbn, title, author);
+    public PrintedBook(String isbn, String title, String author, boolean isAvailable) {
+        super(isbn, title, author, isAvailable);
     }
 
     @Override

@@ -6,31 +6,40 @@ public abstract class Book implements Lendable {
     private String author;
     private boolean isAvailable;
 
-    public Book(String isbn, String title, String author) {
+    public Book(String isbn, String title, String author, boolean isAvailable) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
-    }
-    public Book() {
-        this.isAvailable = true;
+        this.isAvailable = isAvailable;
     }
 
     public Book(Book book) {
         this.isbn = book.getIsbn();
         this.title = book.getTitle();
         this.author = book.getAuthor();
+        this.isAvailable = book.isAvailable();
     }
 
     public abstract void displayBookDetails();
 
     @Override
     public boolean lend(User user) {
-        if (isAvailable && user.canBorrowBooks()) {
-            isAvailable = false;
-            return true;
+
+        if (!isAvailable) {
+            System.out.println("Book already lent");
+            return false;
         }
-        return false;
+
+        if (!user.canBorrowBooks()) {
+            System.out.println("User exceeded borrowing limit");
+            return false;
+        }
+
+        System.out.println("Book Lent Successfully");
+        isAvailable = false;
+        return true;
     }
+
 
     @Override
     public void returnBook(User user) {

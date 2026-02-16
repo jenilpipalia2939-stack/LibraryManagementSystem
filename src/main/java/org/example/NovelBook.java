@@ -3,8 +3,8 @@ package org.example;
 public class NovelBook extends Book {
     private String genre;
 
-    public NovelBook(String isbn, String title, String author, String genre) {
-        super(isbn, title, author);
+    public NovelBook(String isbn, String title, String author, boolean isAvailable, String genre) {
+        super(isbn, title, author, isAvailable);
         this.genre = genre;
     }
 
