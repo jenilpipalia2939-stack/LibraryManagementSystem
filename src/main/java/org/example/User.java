@@ -7,6 +7,8 @@ public abstract class User {
     private String name;
     private String contactInfo;
     private static int totalUsers = 0;
+    protected int borrowedBooksCount;
+
 
     public User(String name, String contactInfo) {
         this.name = name;
@@ -24,6 +26,14 @@ public abstract class User {
 //        this.name = user.getName();
 //        this.contactInfo = user.getContactInfo();
 //    }
+
+    public void incrementBorrowedBook() {
+        this.borrowedBooksCount++;
+    }
+
+    public void decrementBorrowedBook() {
+        this.borrowedBooksCount--;
+    }
 
     abstract void displayDashboard();
 

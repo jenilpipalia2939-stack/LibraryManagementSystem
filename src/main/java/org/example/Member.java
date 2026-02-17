@@ -2,7 +2,6 @@ package org.example;
 
 public class Member extends User {
 
-    private int borrowedBooksCount;
     private final int MAX_BORROW_LIMIT = 5;
 
     public Member(String name, String contactInfo, int borrowedBooksCount) {

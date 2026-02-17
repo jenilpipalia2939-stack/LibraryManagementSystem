@@ -55,28 +55,28 @@ public class LibraryManagementSystem implements Lendable {
     }
 
     @Override
-    public boolean lend(User user) {
+    public boolean lend(Book book, User user) {
 
-        if (!isAvailable()) {
-            System.out.println("Book already lent");
-            return false;
-        }
+            if (!book.getIsAvailable()) {
+                System.out.println("Book already lent");
+                return false;
+            }
 
-        if (!user.canBorrowBooks()) {
-            System.out.println("User exceeded borrowing limit");
-            return false;
-        }
+            if (!user.canBorrowBooks()) {
+                System.out.println("User exceeded borrowing limit");
+                return false;
+            }
 
-        System.out.println("Book Lent Successfully");
-        isAvailable = false;
-        return true;
+            book.setAvailable(false);
+            user.incrementBorrowedBook(); // If you have counter
+
+            System.out.println("Book Lent Successfully");
+            return true;
     }
 
     @Override
-    public void returnBook(User user) {}
-
-    @Override
-    public boolean isAvailable() {
-        return false;
+    public void returnBook(Book book, User user) {
+        book.setAvailable(true);
+        user.decrementBorrowedBook();
     }
 }

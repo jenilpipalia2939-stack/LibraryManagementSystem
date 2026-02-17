@@ -1,6 +1,6 @@
 package org.example;
 
-public abstract class Book implements Lendable {
+public abstract class Book {
     private String isbn;
     private String title;
     private String author;
@@ -17,38 +17,13 @@ public abstract class Book implements Lendable {
         this.isbn = book.getIsbn();
         this.title = book.getTitle();
         this.author = book.getAuthor();
-        this.isAvailable = book.isAvailable();
+        this.isAvailable = book.getIsAvailable();
     }
 
     public abstract void displayBookDetails();
 
-    @Override
-    public boolean lend(User user) {
-
-        if (!isAvailable) {
-            System.out.println("Book already lent");
-            return false;
-        }
-
-        if (!user.canBorrowBooks()) {
-            System.out.println("User exceeded borrowing limit");
-            return false;
-        }
-
-        System.out.println("Book Lent Successfully");
-        isAvailable = false;
-        return true;
-    }
-
-
-    @Override
-    public void returnBook(User user) {
-        isAvailable = true;
-    }
-
-    @Override
-    public boolean isAvailable() {
-        return isAvailable;
+    public void setAvailable(boolean status) {
+        this.isAvailable = status;
     }
 
     public String getIsbn() {
@@ -61,5 +36,9 @@ public abstract class Book implements Lendable {
 
     public String getAuthor() {
         return author;
+    }
+
+    public boolean getIsAvailable() {
+        return isAvailable;
     }
 }

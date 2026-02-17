@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Step 3.2: Create instances of Member and Librarian
-        Member s1 = new Member("Jeni", "99267 98844", 4);
+        User s1 = new Member("Jeni", "99267 98844", 4);
         Member p1 = new Member("Kartik", "99267 98845", 3);
         Librarian l1 = new Librarian("Bapu", "45821 26551");
         Member s2 = new Member("Jack", "99268 54845", 2);
@@ -63,13 +63,17 @@ public class Main {
         // Search Example
         System.out.println("\n===== SEARCH RESULT =====");
         System.out.println(searchBook("Rich Dad Poor Dad", "Robert Kiyosaki", "PrintedBook"));
-        boolean isLent;
-         isLent = library1.lend(s1);
-         isLent = mathBook.lend(s2);
-         isLent = alchemist.lend(s1);
-         isLent = harryPotter.lend(p1);
+        boolean lend1 = library1.lend(dsBook, s1);
+        System.out.println("Library1 → " + lend1);
 
+        boolean lend2 = library1.lend(dsBook,s2);
+        System.out.println("MathBook → " + lend2);
 
+        boolean lend3 = library1.lend(alchemist,s1);
+        System.out.println("Alchemist → " + lend3);
+
+        boolean lend4 = library1.lend(mathBook,p1);
+        System.out.println("HarryPotter → " + lend4);
 
     }
 }
