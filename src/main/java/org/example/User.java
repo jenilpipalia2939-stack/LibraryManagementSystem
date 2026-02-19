@@ -3,11 +3,12 @@ package org.example;
 import javax.print.attribute.UnmodifiableSetException;
 
 public abstract class User {
-    private String userId;
+    private final String userId;
     private String name;
     private String contactInfo;
     private static int totalUsers = 0;
     protected int borrowedBooksCount;
+    
 
 
     public User(String name, String contactInfo) {
@@ -20,12 +21,6 @@ public abstract class User {
     public final String generateUniqueId() {
         return "USER" + totalUsers;
     }
-
-//
-//    public User(User user) {
-//        this.name = user.getName();
-//        this.contactInfo = user.getContactInfo();
-//    }
 
     public void incrementBorrowedBook() {
         this.borrowedBooksCount++;
@@ -45,6 +40,10 @@ public abstract class User {
 
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+    public int getBorrowedBooksCount() {
+        return borrowedBooksCount;
     }
 
     public String getName() {
@@ -67,5 +66,6 @@ public abstract class User {
         System.out.println("User ID: " + getUserId());
         System.out.println("Name: " + getName());
         System.out.println("contact Info: " + getContactInfo());
+        System.out.println("Borrowed Books:" + getBorrowedBooksCount());
     }
 }

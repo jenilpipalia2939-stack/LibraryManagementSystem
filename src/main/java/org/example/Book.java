@@ -1,9 +1,9 @@
 package org.example;
 
 public abstract class Book {
-    private String isbn;
-    private String title;
-    private String author;
+    private final String isbn;
+    private final String title;
+    private final String author;
     private boolean isAvailable;
 
     public Book(String isbn, String title, String author, boolean isAvailable) {

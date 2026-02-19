@@ -4,7 +4,7 @@ import static org.example.LibraryManagementSystem.searchBook;
 
 public class Main {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
 
         // Step 3.2: Create instances of Member and Librarian
         User s1 = new Member("Jeni", "99267 98844", 4);
@@ -64,16 +64,18 @@ public class Main {
         System.out.println("\n===== SEARCH RESULT =====");
         System.out.println(searchBook("Rich Dad Poor Dad", "Robert Kiyosaki", "PrintedBook"));
         boolean lend1 = library1.lend(dsBook, s1);
-        System.out.println("Library1 → " + lend1);
+        System.out.println("DsBook → " + lend1);
 
-        boolean lend2 = library1.lend(dsBook,s2);
-        System.out.println("MathBook → " + lend2);
+        boolean lend2 = library1.lend(dsBook,s1);
+        System.out.println("DsBook → " + lend2);
 
         boolean lend3 = library1.lend(alchemist,s1);
         System.out.println("Alchemist → " + lend3);
 
-        boolean lend4 = library1.lend(mathBook,p1);
+        boolean lend4 = library1.lend(harryPotter,s1);
         System.out.println("HarryPotter → " + lend4);
 
+        library1.returnBook(mathBook, p1);
+        s1.displayUserDetails();
     }
 }

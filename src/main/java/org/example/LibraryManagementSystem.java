@@ -1,5 +1,7 @@
 package org.example;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,8 @@ public class LibraryManagementSystem implements Lendable {
     static List<Book> bookInventory = new ArrayList<>();
     static List<User> registeredUsers = new ArrayList<>();
     static List<Book> searchedResultBook = new ArrayList<>();
+    static List<Book> assignedBooks = new ArrayList<>();
+    LoanTracker loanTracker = new LoanTracker();
 
     public List<User> getRegisteredUsers() {
         return registeredUsers;
@@ -67,6 +71,7 @@ public class LibraryManagementSystem implements Lendable {
                 return false;
             }
 
+            loanTracker.setUserHasBooks(user, book);
             book.setAvailable(false);
             user.incrementBorrowedBook(); // If you have counter
 
@@ -78,5 +83,6 @@ public class LibraryManagementSystem implements Lendable {
     public void returnBook(Book book, User user) {
         book.setAvailable(true);
         user.decrementBorrowedBook();
+        System.out.println("Book successfully returned");
     }
 }
